@@ -1,0 +1,25 @@
+class Solution:
+    def compress(self, chars: list[str]) -> int:
+        write = 0  # Pointer to write the compressed characters
+        read = 0   # Pointer to read through the original list
+
+        while read < len(chars):
+            char = chars[read]
+            count = 0
+
+            # Count the number of occurrences of the current character
+            while read < len(chars) and chars[read] == char:
+                read += 1
+                count += 1
+
+            # Write the character to the list
+            chars[write] = char
+            write += 1
+
+            # If the character occurs more than once, write the count
+            if count > 1:
+                for digit in str(count):
+                    chars[write] = digit
+                    write += 1
+
+        return write
