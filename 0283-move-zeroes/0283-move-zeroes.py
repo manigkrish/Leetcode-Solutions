@@ -1,14 +1,15 @@
-class Solution(object):
-    def moveZeroes(self, nums):
+class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
         """
-        :type nums: List[int]
-        :rtype: void Do not return anything, modify nums in-place instead.
+        Do not return anything, modify nums in-place instead.
         """
-        i = 0 
-        for j in range(len(nums)):
-            if nums[j] != 0:
-                nums[i] = nums[j]
-                i += 1
-        while i < len(nums):
-            nums[i] = 0
-            i += 1
+        # Pointer to track the position of the last non-zero element
+        last_non_zero_index = 0
+        
+        # Move all non-zero elements to the beginning of the array
+        for i in range(len(nums)):
+            if nums[i] != 0:
+                nums[last_non_zero_index] = nums[i]
+                if i != last_non_zero_index:
+                    nums[i] = 0
+                last_non_zero_index += 1
